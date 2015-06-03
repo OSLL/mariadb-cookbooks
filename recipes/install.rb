@@ -1,4 +1,4 @@
-include_recipe "mariadb::mdberepos"
+include_recipe "mariadb::mdbrepos"
 
 # Turn off SElinux
 if node[:platform] == "centos" and node["platform_version"].to_f >= 6.0 
@@ -31,11 +31,12 @@ else
   package 'MariaDB-client'
 end
 
+# Check if MariaDb installed, than start service!
 # Starts service
-case node[:platform_family]
-when "windows"
-else
-  service "mysql" do
-    action :start
-  end 
-end
+#case node[:platform_family]
+#when "windows"
+#else
+#  service "mysql" do
+#    action :start
+#  end 
+#end
