@@ -1,5 +1,8 @@
-node.set_unless['maria']['version'] = "10.0"
-
+#
+# MariaDB Enterprise
+#
+#node.set_unless['maria']['version'] = "10.0"
+#
 case node[:platform_family]
 when "debian"
   # Add repo key
@@ -17,13 +20,13 @@ when "debian"
 when "rhel", "fedora"
   # Add the repo
   template "/etc/yum.repos.d/mariadb.repo" do
-    source "mariadb.rhel.erb"
+    source "mariadbe.rhel.erb"
     action :create
   end
 when "suse"
   # Add the repo
   template "/etc/zypp/repos.d/mariadb.repo.template" do
-    source "mariadb.suse.erb"
+    source "mariadbe.suse.erb"
     action :create
   end
   release_name = "test -f /etc/os-release && cat /etc/os-release | grep '^ID=' | sed s/'^ID='//g | sed s/'\"'//g || if cat /etc/SuSE-release | grep Enterprise &>/dev/null; then echo sles; else echo opensuse; fi"
