@@ -31,7 +31,7 @@ when "suse"
   end
   release_name = "if cat /etc/SuSE-release | grep Enterprise &>/dev/null; then echo sles; else echo opensuse; fi"
   execute "Change suse on sles repository" do
-  	command "cat /etc/zypp/repos.d/mariadb.repo | sed s/suse/$(" + release_name + ")/g > /etc/zypp/repos.d/mariadb.repo"
+  	command "cat /etc/zypp/repos.d/mariadb.repo | sed s/PLATFORM/$(" + release_name + ")/g > /etc/zypp/repos.d/mariadb.repo"
   end
 when "windows"
   arch = node[:kernel][:machine] == "x86_64" ? "winx64" : "win32"
